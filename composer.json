@@ -1,0 +1,22 @@
+{
+    "name": "4rg0n/folder-sync",
+    "type": "project",
+    "description": "Folder Sync",
+    "keywords": ["folder", "sync", "releases"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dominic Rönicke",
+            "email": "argonthechecker@gmail.com"
+        },
+        {
+            "name": "Peter Eisenschmidt",
+            "homepage": "onycro@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/filesystem": "2.4",
+        "markwilson/verbal-expressions-php": "dev-master"
+    }
+}
