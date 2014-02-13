@@ -2,7 +2,7 @@
 /**
  * Abstrakte Reader
  * 
- * @package Reader
+ * @package OST\Reader
  * @author Dominic Rönicke <argonthechecker@gmail.com>
  * @version $Id: $
  */

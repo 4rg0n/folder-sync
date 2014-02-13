@@ -2,7 +2,7 @@
 /**
  * Abstrakte Sanitizer
  * 
- * @package Sanitizer
+ * @package OST\Sanitizer
  * @author Dominic Rönicke <argonthechecker@gmail.com>
  * @version $Id: $
  */

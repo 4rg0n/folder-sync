@@ -2,7 +2,7 @@
 /**
  * Ordner Collection
  *
- * @package Collection
+ * @package OST\Collection
  * @author Dominic Rönicke <argonthechecker@gmail.com>
  * @version $Id: $
  */

@@ -2,7 +2,7 @@
 /**
  * Abstrakte Compare
  * 
- * @package Compare
+ * @package OST\Compare
  * @author Dominic Rönicke <argonthechecker@gmail.com>
  * @version $Id: $
  */
