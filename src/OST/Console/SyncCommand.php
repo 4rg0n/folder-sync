@@ -12,6 +12,6 @@ class SyncCommand
 {
     protected function configure()
     {
-        
+        //TODO Config
     }
 }
