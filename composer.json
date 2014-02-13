@@ -4,6 +4,11 @@
     "description": "Folder Sync",
     "keywords": ["folder", "sync", "releases"],
     "license": "MIT",
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
     "authors": [
         {
             "name": "Dominic Rönicke",
@@ -11,7 +16,11 @@
         },
         {
             "name": "Peter Eisenschmidt",
-            "homepage": "onycro@gmail.com"
+            "email": "onycro@gmail.com"
+        },
+        {
+            "name": "Florian Weber",
+            "email": "florian.weber.dd@me.com"
         }
     ],
     "require": {
