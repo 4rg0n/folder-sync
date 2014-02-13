@@ -11,6 +11,10 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class SyncCommand extends Command
 {
+    /**
+     * configure
+     * configs the command, adds optional or required arguments and option switches to the current context
+     */
     protected function configure()
     {
         $this
@@ -29,6 +33,14 @@ class SyncCommand extends Command
             );
     }
 
+    /**
+     * execute
+     * Executes the cli-run and does the logic
+     *
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null|void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $name = $input->getArgument('name');
