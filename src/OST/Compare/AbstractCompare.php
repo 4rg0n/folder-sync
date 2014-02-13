@@ -7,7 +7,7 @@
  * @version $Id: $
  */
 
-namespace Compare;
+namespace OST\Compare;
 
 abstract class AbstractCompare implements CompareInterface
 {

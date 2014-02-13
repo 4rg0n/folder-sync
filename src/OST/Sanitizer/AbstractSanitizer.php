@@ -1,15 +1,15 @@
 <?php
 /**
- * Sanitizer Interface
+ * Abstrakte Sanitizer
  * 
  * @package Sanitizer
  * @author Dominic Rönicke <argonthechecker@gmail.com>
  * @version $Id: $
  */
 
-namespace Sanitizer;
+namespace OST\Sanitizer;
 
-interface SanitizerInterface
+abstract class AbstractSanitizer implements SanitizerInterface
 {
     
 }

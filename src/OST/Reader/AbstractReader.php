@@ -7,7 +7,7 @@
  * @version $Id: $
  */
 
-namespace Reader;
+namespace OST\Reader;
 
 abstract class AbstractReader implements ReaderInterface
 {

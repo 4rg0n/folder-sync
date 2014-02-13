@@ -1,15 +1,15 @@
 <?php
 /**
- * Compare Interface
+ * Reader Interface
  * 
- * @package Collection
+ * @package Reader
  * @author Dominic Rönicke <argonthechecker@gmail.com>
  * @version $Id: $
  */
 
-namespace Compare;
+namespace OST\Reader;
 
-interface CompareInterface
+interface ReaderInterface
 {
     
 }

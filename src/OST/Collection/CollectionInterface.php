@@ -1,15 +1,15 @@
 <?php
 /**
- * Abstrakte Collection
+ * Collection Interface
  * 
  * @package Collection
  * @author Dominic Rönicke <argonthechecker@gmail.com>
  * @version $Id: $
  */
 
-namespace Collection;
+namespace OST\Collection;
 
-abstract class AbstractCollection implements \Iterator, Collection
+interface CollectionInterface
 {
     
 }

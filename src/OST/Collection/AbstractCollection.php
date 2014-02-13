@@ -1,0 +1,17 @@
+<?php
+/**
+ * Abstrakte Collection
+ * 
+ * @package Collection
+ * @author Dominic Rönicke <argonthechecker@gmail.com>
+ * @version $Id: $
+ */
+
+namespace OST\Collection;
+
+abstract class AbstractCollection implements \Iterator, Collection
+{
+    
+}
+
+
