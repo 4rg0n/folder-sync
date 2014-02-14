@@ -9,26 +9,26 @@
 
 namespace OST\Collection;
 
-use OST\Model\File as FileModel;
+use OST\Model\ModelInterfacel;
 
 class File extends AbstractCollection
 {
     /**
-     * Stellt sicher, dass das Item eine Datei ist
+     * Stellt sicher, dass das Item ein Model ist
      *
      * @see OST\Collection\AbstractCollection::add();
      *
      * @param int|string $key
-     * @param \OST\Model\File $item
+     * @param \OST\Model\ModelInterfacel $item
      * @return mixed
      * @throws \InvalidArgumentException
      */
-    public function add($key, $item)
+    public function add($key, $item = null)
     {
-        if (false === $item instanceof FileModel) {
+        if (false === $item instanceof ModelInterfacel) {
             throw new \InvalidArgumentException(sprintf(
-                'Parameter item muss eine Instanz von "%s" sein. "%s" gegeben',
-                'OST\Model\File',
+                'Parameter item must be an instance of "%s". "%s" given',
+                'OST\Model\ModelInterfacel',
                 gettype($item)
             ));
         }
