@@ -4,8 +4,10 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use OST\Command\SyncCommand;
+use OST\Command\ReadCommand;
 use Symfony\Component\Console\Application;
 
 $application = new Application();
 $application->add(new SyncCommand);
+$application->add(new ReadCommand);
 $application->run();
