@@ -2,8 +2,6 @@
 /**
  * Collection Interface
  *
- * @todo Translate to english
- * 
  * @package OST\Collection
  * @author Dominic Rönicke <argonthechecker@gmail.com>
  * @version $Id: $
@@ -14,53 +12,56 @@ namespace OST\Collection;
 interface CollectionInterface
 {
     /**
-     * Gibt einen Eintrag aus der Collection mit dem übergebnen Key zurück
+     * Returns the element with the given key
      *
-     * @param string|int $key - der Schlüssel des Elements welches zurück gegeben werden soll
-     * @return mixed
+     * @param string|int $key - der Schlüssel des Elements
+     * @return mixed|void
      */
     public function get($key);
 
 
     /**
-     * Fügt ein Element mit dem übergebenen Key zur Collection hinzu
+     * Adds an element to the collection.
      *
-     * @param string|int|mixed $key - der Schlüssel des Elements oder das Element
+     * @param string|int|mixed $key - the key of the element or the element itself
      * @param mixed $item (optional) - das Element
-     * @return mixed - das hinzugefügte Item
+     * @throws \Exception
+     * @return mixed - added element
      */
     public function add($key, $item = null);
 
 
     /**
-     * Entfernt ein Element anhand des übergebenen Schlüssels aus der Collection
+     * Removes the element with given key.
+     * If no element was found, false will be returned.
      *
-     * @param string|int $key - Schlüssel des zu entfernenden Elements
+     * @param string|int $key - key of the element
      * @return $this
      */
     public function remove($key);
 
 
     /**
-     * Ersetzt ein Element mit dem übergebenen Schlüssel in der Collection, durch das neue übergene Element
+     * Replaces an element with the given key.
+     * If no element exists with the given key, it will be added.
      *
-     * @param string|int $key - der Schlüssel des zu ersetzenden Elements
-     * @param mixed $item - das neue Element
+     * @param string|int $key - key of the element
+     * @param mixed $item - new element
      * @return $this
      */
     public function replace($key, $item);
 
 
     /**
-     * Gibt die Anzahl der Elemente in der Collection zurück
+     * Returns the amount of elements in the collection.
      *
-     * @return int - Anzahl der Elemente der Collection
+     * @return int - amount of elements in the collection
      */
     public function count();
 
 
     /**
-     * Löscht alle Elemente aus der Collection
+     * Clears the whole collection
      *
      * @return $this
      */
@@ -68,7 +69,7 @@ interface CollectionInterface
 
 
     /**
-     * Wandelt die Collection in ein Array und gibt dieses zurück
+     * Transforms the collection into an array
      *
      * @return array
      */

@@ -2,8 +2,6 @@
 /**
  * Abstrakte Collection
  *
- * @todo Translate to english
- * 
  * @package OST\Collection
  * @author Dominic Rönicke <argonthechecker@gmail.com>
  * @version $Id: $
@@ -14,7 +12,7 @@ namespace OST\Collection;
 abstract class AbstractCollection implements \Iterator, CollectionInterface
 {
     /**
-     * Enthält einen Array mit allen Elementen der Collection
+     * Contains an array of all elements of the collection
      *
      * @var array $items
      */
@@ -22,7 +20,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Enthält einen Array mit allen Keys der Collection
+     * Contains an array of all keys of the collection
      *
      * @var array $keys
      */
@@ -30,7 +28,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Enthält einen Array aus den Key und Index Beziehungen
+     * Contains the relationship from index to element
      *
      * @var array $indexMap
      */
@@ -38,7 +36,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Enthält die Anzahl der Elemente der Collection
+     * Contains the amount of elements in the collection
      *
      * @var int $length
      */
@@ -46,7 +44,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Der Pointer Wert, der für den Iterator benutzt wird
+     * Pointer value, which is used by the Iterator class
      *
      * @var int $pointer;
      */
@@ -56,7 +54,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
     /**
      * Constructor
      *
-     * @param array $array - Elemente, die der Collection hinzugefügt werden
+     * @param array $array (optional) - elements, which will be added to the collection
      */
     public function __construct(Array $array = array())
     {
@@ -65,9 +63,9 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Gibt dem Iterator das derzeitige Element zurück.
+     * Returns the current element for Iterator
      *
-     * @see \Iterator
+     * @see \Iterator::current()
      *
      * @return mixed
      */
@@ -78,7 +76,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Gibt den Iterator den derzeitigen Schlüssel zurück.
+     * Returns the current key of the element for Iterator.
      *
      * @see \Iterator::key()
      *
@@ -91,7 +89,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Setzt den Pointer eine Position weiter.
+     * Sets pointer +1.
      *
      * @see \Iterator::next()
      */
@@ -102,7 +100,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Resettet den Pointer
+     * Resets the pointer
      *
      * @see \Iterator::rewind()
      */
@@ -113,7 +111,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Überprüft, ob ein Schlüssel an der Stelle des Pointers existiert.
+     * Checks wether a key exists at pointer position
      *
      * @see \Iterator::valid()
      *
@@ -126,14 +124,14 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Fügt ein Element der Collection hinzu.
+     * Adds an element to the collection.
      *
      * @todo Bessere Variante finden Elemente ohne Schlüssel hinzuzufügen (SplStack Klasse?)
      *
-     * @param string|int $key - der Schlüssel des Elements
-     * @param mixed $item (otional) - das Element
+     * @param string|int|mixed $key - the key of the element or the element itself
+     * @param mixed $item (optional) - das Element
      * @throws \Exception
-     * @return mixed - das hinzugefügt Element
+     * @return mixed - added element
      */
     public function add($key, $item = null)
     {
@@ -142,7 +140,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
             $key = uniqid(); //Drity...
         }
 
-        //Existiert der Schlüssel schon?
+        //Key already exists in collection?
         if ($this->hasKey($key)) {
             throw new \Exception(sprintf('Es existiert bereits ein Element mit dem Schlüssel "%s".', $key));
         }
@@ -160,16 +158,16 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Ersetzt ein Element mit dem übergeben Schlüssel durch das neue Element.
-     * Wenn kein Element mit dem Schlüssel existiert, wird es der Collection hinzugefügt.
+     * Replaces an element with the given key.
+     * If no element exists with the given key, it will be added.
      *
-     * @param string|int $key - der Schlüssel des Elements
-     * @param mixed $item - das neue Element
+     * @param string|int $key - key of the element
+     * @param mixed $item - new element
      * @return  \OST\Collection\AbstractCollection
      */
     public function replace($key, $item)
     {
-        //Existiert der Schlüssel schon?
+        //Key already exists in collection?
         if (false === $this->hasKey($key)) {
 
             //Hinzufügen
@@ -184,26 +182,33 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Ersetzt ein Element in der Collection.
+     * Replaces an element with the given key.
      *
-     * @see \OST\Collection\AbstractCollection::replace()
+     * Returns true if the element was successfully replaced.
+     * Returns false if there is no element to replace with the given key.
      *
-     * @param string|int $key - der Schlüssel des Elements
-     * @param mixed $item - das neue Element
-     * @return  \OST\Collection\AbstractCollection
+     * @param string|int $key - key of the element
+     * @param mixed $item - new element
+     * @return  boolean
      */
     public function set($key, $item)
     {
-        return $this->replace($key, $item);
+        if (true === $this->hasKey($key)) {
+            $index = $this->indexOfKey($key);
+            $this->items[$index] = $item;
+
+            return true;
+        }
+
+        return false;
     }
 
 
     /**
-     * Gibt anhand des übergebenen Keys das Element zurück.
-     * Wenn kein Element gefunden wurde, wird null zurück gegeben.
+     * Returns the element with the given key
      *
      * @param string|int $key - der Schlüssel des Elements
-     * @return Mixed|void
+     * @return mixed|void
      */
     public function get($key)
     {
@@ -220,10 +225,9 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Gibt ein Element an der übergebenen Stelle wieder.
-     * Wenn der Index nicht existiert wird null zurück gegeben.
+     * Returns an element at the given position.
      *
-     * @param int $index - die Position in der Collection
+     * @param int $index - position in collection
      * @return mixed|void
      */
     public function getAt($index)
@@ -239,10 +243,9 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Gibt true zurück, wenn der übergebene Schlüssel ind er Collection existiert.
-     * Ansonsten wird false zurück gegeben.
+     * Returns true if the given key already exists
      *
-     * @param string|int $key - der Schlüssel nach dem gesucht werden soll
+     * @param string|int $key - the key
      * @return Boolean
      */
     public function hasKey($key)
@@ -252,7 +255,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Fügt alle Elemente aus dem übergebenen Array zur Collection hinzu
+     * Adds all given elements to the collection
      *
      * @param array $array
      * @return  \OST\Collection\AbstractCollection
@@ -268,9 +271,9 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Gibt die Länge der Collection zurück.
+     * Returns the amount of elements in the collection.
      *
-     * @return int - die Anzahl der Elemente in der Collection
+     * @return int - amount of elements in the collection
      */
     public function count()
     {
@@ -279,11 +282,10 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Entfernt anhand des übergebenen Schlüssel ein Element aus der Collection.
-     * Es wird false zurück gegeben, wenn der übergebene Schlüssel nicht existiert
-     * und das Element somit nicht gelöscht werden kann.
-     *
-     * @param string|int $key - der Schlüssel des Elements das entfernt werden soll
+     * Removes the element with given key.
+     * If no element was found, false will be returned.
+      *
+     * @param string|int $key - key of the element
      * @return \OST\Collection\AbstractCollection|boolean
      */
     public function remove($key)
@@ -315,7 +317,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Löscht alle Elemente aus der Collection.
+     * Clears the whole collection
      *
      * @return \OST\Collection\AbstractCollection
      */
@@ -331,7 +333,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Verpackt alle Elemente der Collection in ein assoziatives Array und gibt dies zurück.
+     * Transforms the collection into an array
      *
      * @return array
      */
@@ -348,7 +350,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Gibt das erste Element der Collection zurück.
+     * Returns the first element of the collection
      *
      * @return mixed - erstes Element der Collection
      */
@@ -359,7 +361,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Gibt das letzte Element der Collection zurück
+     * Returns the last element of the collection
      *
      * @return mixed - letzte Element der Collection
      */
@@ -370,7 +372,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Gibt alle Elemente der Collection zurück.
+     * Returns an array with all elements of the collection.
      *
      * @return array - Array mit allen Elementen der Collection
      */
@@ -381,7 +383,7 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Gibt ein Array mit allen Schlüsseln aus der Collection zurück.
+     * Returns an array with all keys of the collection.
      *
      * @return array - Array mit allen Keys (Schlüsseln) aus der Collection
      */
@@ -392,11 +394,10 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Gibt den Index des übergebenen Schlüssel zurück.
-     * Wenn der Schlüssel nicht existiert, wird null zurück gegeben.
+     * Returns the index of the given key
      *
-     * @param string|int $key - der zu suchende Schlüssel
-     * @return int|void - der Index (Position) des Schlüssels in der Collection
+     * @param string|int $key - the key
+     * @return int|void - position of the key in the collection
      */
     public function indexOfKey($key)
     {
@@ -412,9 +413,9 @@ abstract class AbstractCollection implements \Iterator, CollectionInterface
 
 
     /**
-     * Überprüft, ob die Collection leer ist.
+     * Checks whether the collection is empty
      *
-     * @return boolean - true wenn leer ansonsten false
+     * @return boolean - true when empty
      */
     public function isEmpty()
     {
