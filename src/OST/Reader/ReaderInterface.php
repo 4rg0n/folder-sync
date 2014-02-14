@@ -11,7 +11,7 @@ namespace OST\Reader;
 
 interface ReaderInterface
 {
-    
+    public function read($path);
 }
 
 

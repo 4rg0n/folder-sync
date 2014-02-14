@@ -1,6 +1,6 @@
 <?php
 /**
- * Abstrakte Modelklasse
+ * Abstract model class
  *
  * @package OST\Model
  * @author Dominic Rönicke <argonthechecker@gmail.com>

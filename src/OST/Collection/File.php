@@ -1,6 +1,6 @@
 <?php
 /**
- * Datei Collection
+ * File Collection
  *
  * @package OST\Collection
  * @author Dominic Rönicke <argonthechecker@gmail.com>
@@ -9,27 +9,26 @@
 
 namespace OST\Collection;
 
-use OST\Model\ModelInterfacel;
+use OST\Model\File as FileModel;
 
 class File extends AbstractCollection
 {
     /**
-     * Stellt sicher, dass das Item ein Model ist
+     * Ensure that given item is an File Model
      *
      * @see OST\Collection\AbstractCollection::add();
      *
      * @param int|string $key
-     * @param \OST\Model\ModelInterfacel $item
+     * @param \OST\Model\File $item
      * @return mixed
      * @throws \InvalidArgumentException
      */
-    public function add($key, $item = null)
+    public function add($key,  $item = null)
     {
-        if (false === $item instanceof ModelInterfacel) {
+        if (false === $item instanceof FileModel) {
             throw new \InvalidArgumentException(sprintf(
-                'Parameter item must be an instance of "%s". "%s" given',
-                'OST\Model\ModelInterfacel',
-                gettype($item)
+                'Parameter item must be an instance of "%s"',
+                'OST\Model\File'
             ));
         }
 

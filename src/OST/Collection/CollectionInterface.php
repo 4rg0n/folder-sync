@@ -1,6 +1,8 @@
 <?php
 /**
  * Collection Interface
+ *
+ * @todo Translate to english
  * 
  * @package OST\Collection
  * @author Dominic Rönicke <argonthechecker@gmail.com>
@@ -23,11 +25,11 @@ interface CollectionInterface
     /**
      * Fügt ein Element mit dem übergebenen Key zur Collection hinzu
      *
-     * @param string|int $key - der Schlüssel des Elements
-     * @param mixed $item - das Element
+     * @param string|int|mixed $key - der Schlüssel des Elements oder das Element
+     * @param mixed $item (optional) - das Element
      * @return mixed - das hinzugefügte Item
      */
-    public function add($key, $item);
+    public function add($key, $item = null);
 
 
     /**

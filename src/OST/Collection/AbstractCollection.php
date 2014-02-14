@@ -1,6 +1,8 @@
 <?php
 /**
  * Abstrakte Collection
+ *
+ * @todo Translate to english
  * 
  * @package OST\Collection
  * @author Dominic Rönicke <argonthechecker@gmail.com>
