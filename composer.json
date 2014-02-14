@@ -26,7 +26,8 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/filesystem": "2.4",
+        "symfony/finder": "2.4",
         "markwilson/verbal-expressions-php": "dev-master",
-        "symfony/console": "dev-master"
+        "symfony/console": "2.4"
     }
 }
