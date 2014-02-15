@@ -1,8 +1,8 @@
 <?php
 /**
- * Folder Compare Klasse
+ * Folder Compare Class
  *
- * Vergleicht Collections von Ordnern miteinander
+ * Compares all directories of two collctions
  *
  * @package OST\Compare
  * @author Dominic Rönicke <argonthechecker@gmail.com>
@@ -11,6 +11,12 @@
 
 namespace OST\Compare;
 
-class Folder {
+use OST\Collection\CollectionInterface;
 
+class Folder extends AbstractCompare
+{
+    public function compare(CollectionInterface $collectionLeft, CollectionInterface $collectionRight)
+    {
+
+    }
 } 

@@ -1,6 +1,6 @@
 <?php
 /**
- * File reader class
+ * Release reader class
  *
  * @package OST\Reader
  * @author Dominic Rönicke <argonthechecker@gmail.com>
@@ -9,9 +9,9 @@
 
 namespace OST\Reader;
 
-use OST\Model\File as FileModel;
+use OST\Model\Release as ReleaseModel;
 
-class File extends AbstractReader
+class Release extends AbstractReader
 {
     /**
      * Reads all files located into the given path
@@ -25,11 +25,11 @@ class File extends AbstractReader
         $collection = $this->getCollection();
 
         //read files and folders
-        foreach ($finder->in($path) as $file)
+        foreach ($finder->directories()->in($path) as $file)
         {
-            $fileModel = new FileModel($file);
+            $releaseModel = new ReleaseModel($file);
 
-            $collection->add($fileModel->getKey(), $fileModel);
+            $collection->add($releaseModel->getKey(), $releaseModel);
         }
 
         return $collection;

@@ -9,9 +9,11 @@
 
 namespace OST\Compare;
 
+use OST\Collection\CollectionInterface;
+
 interface CompareInterface
 {
-    
+    public function compare(CollectionInterface $collectionLeft, CollectionInterface $collectionRight);
 }
 
 

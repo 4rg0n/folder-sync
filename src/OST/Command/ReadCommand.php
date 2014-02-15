@@ -7,8 +7,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;
-use OST\Reader\File as FileReader;
-use OST\Collection\File as FileCollection;
+use OST\Reader\Release as RleaseReader;
+use OST\Collection\Release as ReleaseCollection;
 
 class ReadCommand extends Command
 {
@@ -40,8 +40,8 @@ class ReadCommand extends Command
     {
         $path = $input->getArgument('path');
 
-        $collection = new FileCollection();
-        $reader = new FileReader($collection);
+        $collection = new ReleaseCollection();
+        $reader = new RleaseReader($collection);
 
         $files = $reader->read($path);
 

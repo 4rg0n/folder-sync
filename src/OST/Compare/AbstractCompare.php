@@ -9,9 +9,14 @@
 
 namespace OST\Compare;
 
+use OST\Collection\CollectionInterface;
+
 abstract class AbstractCompare implements CompareInterface
 {
-    
+    public function compare(CollectionInterface $collectionLeft, CollectionInterface $collectionRight)
+    {
+
+    }
 }
 
 

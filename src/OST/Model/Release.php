@@ -10,8 +10,9 @@
 namespace OST\Model;
 
 use Symfony\Component\Finder\SplFileInfo;
+use OST\Sanitizer\ReleaseName;
 
-class File extends AbstractModel
+class Release extends AbstractModel
 {
     /**
      * Contains the instance of SplFileInfo class
@@ -31,12 +32,29 @@ class File extends AbstractModel
 
 
     /**
+     * Contains the sanitized name of the folder
+     *
+     * @var string
+     */
+    private $sanitizedName;
+
+
+    /**
+     * Constructor
+     *
      * @param SplFileInfo $info
      */
     public function __construct(SplFileInfo $info)
     {
         $this->info = $info;
         $this->key = $info->getPath() . '/' . $info->getFilename();
+
+        //Sanitizes the Filename
+        //Todo Hydrator / Strategies >.<
+        $sanitizer = ReleaseName::getInstance();
+        $saniName = $sanitizer->sanitize($info->getFilename());
+
+        $this->setSanitizedName($saniName);
     }
 
 
@@ -59,5 +77,25 @@ class File extends AbstractModel
     public function getKey()
     {
         return $this->key;
+    }
+
+    /**
+     * Returns the sanitized name
+     *
+     * @return string
+     */
+    public function getSanitizedNamed()
+    {
+        return $this->sanitizedName;
+    }
+
+    /**
+     * Sets the sanitized name
+     *
+     * @param $name
+     */
+    public function setSanitizedName($name)
+    {
+        $this->sanitizedName = $name;
     }
 }

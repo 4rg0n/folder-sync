@@ -54,6 +54,6 @@ class SyncCommand extends Command
             $text = strtoupper($text);
         }
 
-        $output->writeln($text);
+        $output->writeln('<info>' . $text . '</info>');
     }
 }
